@@ -1,0 +1,27 @@
+.todo {
+  display: flex;
+  width: 450px;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  box-shadow: 0 1px 2px #ccc;
+
+  &__status {
+    align-self: center;
+    margin-bottom: 20px;
+  }
+
+  &__info, &__actions {
+    margin-left: 16px;
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__btn {
+    margin-bottom: 10px;
+  }
+}

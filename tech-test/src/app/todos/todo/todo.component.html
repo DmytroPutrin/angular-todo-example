@@ -1,0 +1,16 @@
+<div class="todo" [class.completed]="completed">
+  <div class="todo__status">
+    <mat-checkbox (change)="toggleStatus()" [checked]="completed"></mat-checkbox>
+  </div>
+
+  <div class="todo__info">
+    <div class="todo__titile">{{ todo.label }}</div>
+
+    <div class="todo__desc">{{ todo.description }}</div>
+  </div>
+
+  <div class="todo__actions">
+    <button class="todo__btn" mat-button mat-raised-button color="primary" (click)="editItem()">Edit</button>
+    <button class="todo__btn" mat-button mat-raised-button color="warn" (click)="removeItem()">Remove</button>
+  </div>
+</div>

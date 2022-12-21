@@ -1,0 +1,8 @@
+<div class="todos" *ngIf="(todos$ | async) as todos">
+  <app-todo
+    *ngFor="let todo of todos"
+    [todo]="todo"
+    (complete)="completeTodo($event, todo)"
+    >
+  </app-todo>
+</div>
