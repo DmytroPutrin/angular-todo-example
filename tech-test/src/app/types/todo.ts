@@ -2,6 +2,7 @@ export const TodoCategory = {
   house: 'house',
   work: 'work',
   bureaucracy: 'bureaucracy',
+  other: 'other',
 } as const;
 
 
@@ -10,5 +11,5 @@ export interface Todo {
   label: string;
   description:  string;
   category: keyof typeof TodoCategory;
-  done: string;
+  done: string | null;
 }

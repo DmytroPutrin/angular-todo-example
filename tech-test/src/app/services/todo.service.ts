@@ -24,14 +24,25 @@ export class TodoService {
   }
 
   add(todo: Partial<Todo>): Observable<Todo> {
-    return this.http.post<Todo>(this.api, todo);
+    return this.http.post<Todo>(this.api, todo).pipe(tap((todo) => this.todos$.next([...this.todos$.value, todo])));
   }
 
   edit(todo: Partial<Todo>): Observable<Todo> {
-    return this.http.patch<Todo>(`${this.api}/${todo.id}`, todo);
+    return this.http.patch<Todo>(`${this.api}/${todo.id}`, todo).pipe(
+      tap((updated) => {
+        const todos = this.todos$.value;
+        const index = todos.findIndex((t) => t.id === updated.id);
+
+        if (index > -1) {
+          todos[index] = updated;
+        }
+
+        this.todos$.next(todos);
+      })
+    );
   }
 
-  remove(id: number): Observable<{id: number}> {
-    return this.http.delete<{id: number}>(`${this.api}/${id}`);
+  remove(id: number): Observable<{}> {
+    return this.http.delete<{}>(`${this.api}/${id}`).pipe(tap((todo) => this.todos$.next(this.todos$.value.filter(t => t.id !== id))));
   }
 }

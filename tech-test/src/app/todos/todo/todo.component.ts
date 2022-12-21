@@ -9,7 +9,7 @@ import { Todo } from 'src/app/types/todo';
 export class TodoComponent implements OnInit {
   @Input() todo: Todo;
 
-  @Output() complete: EventEmitter<string | undefined> = new EventEmitter();
+  @Output() complete: EventEmitter<string | null>= new EventEmitter();
 
   @Output() remove: EventEmitter<number> = new EventEmitter();
 
@@ -26,9 +26,7 @@ export class TodoComponent implements OnInit {
   public toggleStatus(): void {
     this.completed = !this.completed;
 
-    console.log(this.completed);
-
-    const date = this.complete ? new Date().toLocaleDateString() : undefined;
+    const date = this.completed ? new Date().toLocaleDateString() : null;
 
     this.complete.emit(date);
   }

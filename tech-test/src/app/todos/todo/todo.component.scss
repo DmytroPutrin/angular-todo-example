@@ -21,6 +21,15 @@
     flex: 1;
   }
 
+  &__category {
+    text-transform: capitalize;
+    padding: 4px 6px;
+    width: fit-content;
+    color: #fff;
+    background-color: #009688;
+    margin: 10px 0;
+  }
+
   &__btn {
     margin-bottom: 10px;
   }

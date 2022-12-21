@@ -1,8 +1,20 @@
 <div class="todos" *ngIf="(todos$ | async) as todos">
+  <h2>Todo List</h2>
+
+  <div class="todos__actions">
+    <button mat-button  mat-raised-button color="primary" (click)="openTodoForm()">Add New</button>
+    <mat-form-field class="todos__search">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Search" name="search" [(ngModel)]="searchText">
+    </mat-form-field>
+  </div>
+
   <app-todo
-    *ngFor="let todo of todos"
+    *ngFor="let todo of todos | todosFilter: searchText"
     [todo]="todo"
     (complete)="completeTodo($event, todo)"
+    (edit)="openTodoForm($event)"
+    (remove)="removeTodo($event)"
     >
   </app-todo>
 </div>
